@@ -46,22 +46,19 @@ class Estudiante extends Persona{
     }
 }
 
-let estudiante1 = new Estudiante("Diego","23","Masculino","Programacion");
 
-document.querySelector("#resultado").innerHTML = /*html*/`
-    <h2>Nombre:<input id="nombre" placeholder="Diego"></h2>
-    <h2>Edad:<input id="edad" placeholder="23"></h2>
-    <h2>Genero:<input id="genero" placeholder="Masculino"></h2>
-    <h2>Carrera:<input id="carrera" placeholder="Programacion"></h2>
+let button_save = document.querySelector("#button_save");
 
+button_save.addEventListener("click", function(){
+    var input_nombre = document.querySelector("#nombre");
+    var input_edad = document.querySelector("#edad");
+    var input_genero = document.querySelector("#genero");
+    var input_carrera = document.querySelector("#carrera");
+
+    let estudiante1 = new Estudiante(input_nombre.value,input_edad.value,input_genero.value,input_carrera.value);
+
+    document.querySelector("#resultado").innerHTML = /*html*/`
     <h1>Info:<span> ${estudiante1.estudiar()}</span></h1>
 `;
-
-let nombre = document.querySelector("#nombre");
-let edad = document.querySelector("#edad");
-let genero = document.querySelector("#genero");
-let carrera = document.querySelector("#carrera");
-
-nombre.addEventListener("change", function(){
-    console.log(nombre.value);
 });
+
