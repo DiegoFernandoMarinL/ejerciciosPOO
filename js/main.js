@@ -1,11 +1,7 @@
-class Persona {
+class Animal {
     nombre;
-    edad;
-    sexo;
-    constructor(nombre, edad, sexo) {
+    constructor(nombre) {
         this.nombre = nombre;
-        this.edad = edad;
-        this.sexo = sexo;
     }
     set setNombre(nombre) {
         this.nombre = nombre;
@@ -13,52 +9,43 @@ class Persona {
     get getNombre() {
         return this.nombre;
     }
-    set setEdad(edad) {
-        this.edad = edad;
-    }
-    get getEdad() {
-        return this.edad;
-    }
-    set setSexo(sexo) {
-        this.sexo = sexo;
-    }
-    get getSexo() {
-        return this.sexo;
-    }
-    saludar() {
-        return `Buen dia ${this.nombre} espero te encuentres bien`;     
-    }
-    static esMayorDeEdad(edad) {
-        if (edad >= 18){return "eres mayor de edad"} else {return "eres menor de edad"}
-    }
-}
-
-class Estudiante extends Persona{
-    constructor(nombre, edad, sexo, carrera) {
-        super(nombre, edad, sexo);
-        this.carrera = carrera;
-    }
-    get getCarrera() {
-        return this.carrera;
-    }
-    estudiar() {
-        return `${this.saludar()}, tienes ${this.getEdad} años por lo tanto ${Persona.esMayorDeEdad(this.edad)} con genero ${this.getSexo}, y estudias ${this.carrera}`
+    hacerSonido() {
+        switch (this.nombre) {
+            case "CABALLO":
+                return "../storage/audio/caballo.mp3"
+            case "PATO":
+                return "../storage/audio/pato.mp3"
+            case "PERRO":
+                return "../storage/audio/perro.mp3"
+            case "ASNO":
+                return "../storage/audio/asno.mp3"  
+            case "GALLO":
+                return "../storage/audio/gallo.mp3"
+            case "GATO":
+                return "../storage/audio/gato.mp3" 
+            case "PAJARO":
+                return "../storage/audio/pajaro.mp3" 
+            case "TIGRE":
+                return "../storage/audio/tigre.mp3"   
+            case "VACA":
+                return "../storage/audio/vaca.mp3"           
+            default:
+                "Audio no encontrado"
+                break;
+        }    
     }
 }
 
+let button_sound = document.querySelector("#button_sound");
 
-let button_save = document.querySelector("#button_save");
+button_sound.addEventListener("click", function(){
+    let input_animal = document.querySelector("#animal");
 
-button_save.addEventListener("click", function(){
-    let input_nombre = document.querySelector("#nombre");
-    let input_edad = document.querySelector("#edad");
-    let input_genero = document.querySelector("#genero");
-    let input_carrera = document.querySelector("#carrera");
-
-    let estudiante1 = new Estudiante(input_nombre.value,input_edad.value,input_genero.value,input_carrera.value);
+    let animal1 = new Animal(input_animal.value.toUpperCase());
+    console.log(animal1);
 
     document.querySelector("#resultado").innerHTML = /*html*/`
-    <h1>Info:<span> ${estudiante1.estudiar()}</span></h1>
+    <audio controls autoplay><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>
 `;
 });
 
