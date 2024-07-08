@@ -28,6 +28,9 @@ class Persona {
     saludar() {
         return `Buen dia ${this.nombre} espero te encuentres bien`;     
     }
+    static esMayorDeEdad(edad) {
+        if (edad >= 18){return "eres mayor de edad"} else {return "eres menor de edad"}
+    }
 }
 
 class Estudiante extends Persona{
@@ -39,11 +42,11 @@ class Estudiante extends Persona{
         return this.carrera;
     }
     estudiar() {
-        return `${this.saludar()}, tienes ${this.getEdad} años con genero ${this.getSexo}, y estudias ${this.carrera}`
+        return `${this.saludar()}, tienes ${this.getEdad} años por lo tanto ${Persona.esMayorDeEdad(this.edad)} con genero ${this.getSexo}, y estudias ${this.carrera}`
     }
 }
 let estudiante1 = new Estudiante("Diego","23","Masculino","Programacion");
 
 document.querySelector("#resultado").innerHTML = /*html*/`
-    <h1>Info:<span> ${persona1.estudiar()}</span></h1>
+    <h1>Info:<span> ${estudiante1.estudiar()}</span></h1>
 `;
