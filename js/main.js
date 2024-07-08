@@ -50,10 +50,10 @@ class Estudiante extends Persona{
 let button_save = document.querySelector("#button_save");
 
 button_save.addEventListener("click", function(){
-    var input_nombre = document.querySelector("#nombre");
-    var input_edad = document.querySelector("#edad");
-    var input_genero = document.querySelector("#genero");
-    var input_carrera = document.querySelector("#carrera");
+    let input_nombre = document.querySelector("#nombre");
+    let input_edad = document.querySelector("#edad");
+    let input_genero = document.querySelector("#genero");
+    let input_carrera = document.querySelector("#carrera");
 
     let estudiante1 = new Estudiante(input_nombre.value,input_edad.value,input_genero.value,input_carrera.value);
 
