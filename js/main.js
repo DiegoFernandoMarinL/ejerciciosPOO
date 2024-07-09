@@ -1,75 +1,43 @@
-class Animal {
-    nombre;
-    constructor(nombre) {
-        this.nombre = nombre;
+class Figura {
+    color;
+    ancho;
+    largo;
+    constructor(color, ancho, largo) {
+        this.color = color
+        this.ancho = ancho
+        this.largo = largo
     }
-    set setNombre(nombre) {
-        this.nombre = nombre;
+    set setColor(color) {
+        this.color = color;
     }
-    get getNombre() {
-        return this.nombre;
+    get getColor() {
+        return this.color;
     }
-    hacerSonido() {
-        switch (this.nombre) {
-            case "CABALLO":
-                return "../storage/audio/caballo.mp3"
-            case "PATO":
-                return "../storage/audio/pato.mp3"
-            case "PERRO":
-                return "../storage/audio/perro.mp3"
-            case "ASNO":
-                return "../storage/audio/asno.mp3"  
-            case "GALLO":
-                return "../storage/audio/gallo.mp3"
-            case "GATO":
-                return "../storage/audio/gato.mp3" 
-            case "PAJARO":
-                return "../storage/audio/pajaro.mp3" 
-            case "TIGRE":
-                return "../storage/audio/tigre.mp3"   
-            case "VACA":
-                return "../storage/audio/vaca.mp3"           
-            default:
-                "Audio no encontrado"
-                break;
-        }    
+    set setAncho(ancho) {
+        this.ancho = ancho;
     }
+    get getAncho() {
+        return this.ancho;
+    }
+    set setLargo(largo) {
+        this.largo = largo;
+    }
+    get getLargo() {
+        return this.largo;
+    }
+    calcularArea() {
+        return `El area de la figura de color ${this.color} es ${this.ancho * this.largo}`;
+    }    
 }
 
-class Perro extends Animal{
-    constructor(nombre, raza) {
-        super(nombre);
-        this.raza = raza;
-    }
-    set setRaza(raza){
-        this.raza = raza;
-    }
-    get getRaza() {
-        return this.raza;
-    }
-    moverCola() {
-        if (this.nombre == "PERRO"){
-            return `Tu perro de raza ${this.getRaza}, esta sacudiendo la cola`
-        }
-    }
-}
+let button_calcular = document.querySelector("#button_calcular");
 
-let button_sound = document.querySelector("#button_sound");
-
-button_sound.addEventListener("click", function(){
-    let input_animal = document.querySelector("#animal");
-    if (input_animal.value.toUpperCase() == "PERRO"){
-        let input_raza = document.querySelector("#raza");
-        document.querySelector("#divraza").innerHTML = /*html*/`
-        <h2>Raza:<input id="raza" placeholder="pitbull"></h2>`;
-        let animal1 = new Perro(input_animal.value.toUpperCase(), input_raza.value);
-        document.querySelector("#resultado").innerHTML = /*html*/`
-        <audio controls autoplay loop><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>
-        <p>${animal1.moverCola()}</p>`;
-    }else{
-        let animal1 = new Animal(input_animal.value.toUpperCase());
-        document.querySelector("#resultado").innerHTML = /*html*/`
-        <audio controls autoplay><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>`;
-    }
+button_calcular.addEventListener("click", function(){
+    let input_color = document.querySelector("#color");
+    let input_ancho = document.querySelector("#ancho");
+    let input_largo = document.querySelector("#largo");
+    let figura1 = new Figura(input_color.value, input_ancho.value, input_largo.value);
+    document.querySelector("#resultado").innerHTML = /*html*/`
+    <h5>${figura1.calcularArea()}</h5>`;
 });
 
