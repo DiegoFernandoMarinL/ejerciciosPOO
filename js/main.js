@@ -36,16 +36,40 @@ class Animal {
     }
 }
 
+class Perro extends Animal{
+    constructor(nombre, raza) {
+        super(nombre);
+        this.raza = raza;
+    }
+    set setRaza(raza){
+        this.raza = raza;
+    }
+    get getRaza() {
+        return this.raza;
+    }
+    moverCola() {
+        if (this.nombre == "PERRO"){
+            return `Tu perro de raza ${this.getRaza}, esta sacudiendo la cola`
+        }
+    }
+}
+
 let button_sound = document.querySelector("#button_sound");
 
 button_sound.addEventListener("click", function(){
     let input_animal = document.querySelector("#animal");
-
-    let animal1 = new Animal(input_animal.value.toUpperCase());
-    console.log(animal1);
-
-    document.querySelector("#resultado").innerHTML = /*html*/`
-    <audio controls autoplay><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>
-`;
+    if (input_animal.value.toUpperCase() == "PERRO"){
+        let input_raza = document.querySelector("#raza");
+        document.querySelector("#divraza").innerHTML = /*html*/`
+        <h2>Raza:<input id="raza" placeholder="pitbull"></h2>`;
+        let animal1 = new Perro(input_animal.value.toUpperCase(), input_raza.value);
+        document.querySelector("#resultado").innerHTML = /*html*/`
+        <audio controls autoplay loop><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>
+        <p>${animal1.moverCola()}</p>`;
+    }else{
+        let animal1 = new Animal(input_animal.value.toUpperCase());
+        document.querySelector("#resultado").innerHTML = /*html*/`
+        <audio controls autoplay><source src="${animal1.hacerSonido()}" type="audio/mpeg"></audio>`;
+    }
 });
 
